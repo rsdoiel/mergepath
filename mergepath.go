@@ -77,6 +77,10 @@ func init() {
 func main() {
     flag.Parse()
 
+    if help == true {
+        Usage(0, "")
+    }
+
     if flag.NArg() > 0 {
         dir = flag.Arg(0)
         if flag.NArg() == 2 {
