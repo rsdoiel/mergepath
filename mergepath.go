@@ -19,11 +19,11 @@ var (
     envPath string
     dir string
     help bool
-    append_path = true
-    prepend_path = false
+    appendPath = true
+    prependPath = false
 )
 
-var Usage = func(exit_code int, msg string) {
+var usage = func(exit_code int, msg string) {
     var fh = os.Stderr
 
     if exit_code == 0 {
@@ -54,31 +54,31 @@ var Usage = func(exit_code int, msg string) {
 
 func init() {
     const (
-        path_usage = "The path you want to merge with."
-        dir_usage = "The directory you want to add to the path."
-        append_usage = "If directory is not in path, append the directory to the path"
-        prepend_usage = "If directory is not in path, prepend the directory to the path"
-        help_usage = "This help document."
+        pathUsage = "The path you want to merge with."
+        dirUsage = "The directory you want to add to the path."
+        appendUsage = "If directory is not in path, append the directory to the path"
+        prependUsage = "If directory is not in path, prepend the directory to the path"
+        helpUsage = "This help document."
     )
     envPath = os.Getenv("PATH")
-    flag.StringVar(&envPath, "path", envPath, path_usage)
-    flag.StringVar(&envPath, "p", envPath, path_usage)
-    flag.StringVar(&dir, "directory", dir, dir_usage)
-    flag.StringVar(&dir, "d", dir, dir_usage) 
+    flag.StringVar(&envPath, "path", envPath, pathUsage)
+    flag.StringVar(&envPath, "p", envPath, pathUsage)
+    flag.StringVar(&dir, "directory", dir, dirUsage)
+    flag.StringVar(&dir, "d", dir, dirUsage) 
 
-    flag.BoolVar(&append_path, "append", append_path, append_usage)
-    flag.BoolVar(&append_path, "a", append_path, append_usage)
-    flag.BoolVar(&prepend_path, "prepend", prepend_path, prepend_usage)
-    flag.BoolVar(&prepend_path, "P", prepend_path, prepend_usage)
-    flag.BoolVar(&help, "help", false, help_usage)
-    flag.BoolVar(&help, "h", false, help_usage)
+    flag.BoolVar(&appendPath, "append", appendPath, appendUsage)
+    flag.BoolVar(&appendPath, "a", appendPath, appendUsage)
+    flag.BoolVar(&prependPath, "prepend", prependPath, prependUsage)
+    flag.BoolVar(&prependPath, "P", prependPath, prependUsage)
+    flag.BoolVar(&help, "help", false, helpUsage)
+    flag.BoolVar(&help, "h", false, helpUsage)
 }
 
 func main() {
     flag.Parse()
 
     if help == true {
-        Usage(0, "")
+        usage(0, "")
     }
 
     if flag.NArg() > 0 {
@@ -89,16 +89,16 @@ func main() {
     }
 
     if dir == "" {
-        Usage(1, "Missing directory to add to path")
+        usage(1, "Missing directory to add to path")
     }
-    if prepend_path == true {
-        append_path = false
+    if prependPath == true {
+        appendPath = false
     }
     if strings.Contains(envPath, dir) {
         fmt.Println(envPath)
         os.Exit(0)
     }
-    if append_path == true {
+    if appendPath == true {
         fmt.Printf("%s:%s", envPath, dir)
     } else {
         fmt.Printf("%s:%s", dir, envPath)
