@@ -57,21 +57,20 @@ func init() {
 	const (
 		pathUsage    = "The path you want to merge with."
 		dirUsage     = "The directory you want to add to the path."
-		appendUsage  = "Append the directory to the path, moving it was already in the path"
-		prependUsage = "Prepend the directory to the path, moving it was already in the path"
+		appendUsage  = "Append the directory to the path removing any duplication"
+		prependUsage = "Prepend the directory to the path removing any duplication"
 		clipUsage    = "Remove a directory from the path"
 		helpUsage    = "This help document."
 	)
-	envPath = os.Getenv("PATH")
+	envPath = "$PATH"
 	flag.StringVar(&envPath, "path", envPath, pathUsage)
-	flag.StringVar(&envPath, "p", envPath, pathUsage)
 	flag.StringVar(&dir, "directory", dir, dirUsage)
 	flag.StringVar(&dir, "d", dir, dirUsage)
 
 	flag.BoolVar(&appendPath, "append", appendPath, appendUsage)
 	flag.BoolVar(&appendPath, "a", appendPath, appendUsage)
 	flag.BoolVar(&prependPath, "prepend", prependPath, prependUsage)
-	flag.BoolVar(&prependPath, "P", prependPath, prependUsage)
+	flag.BoolVar(&prependPath, "p", prependPath, prependUsage)
 	flag.BoolVar(&clipPath, "clip", clipPath, clipUsage)
 	flag.BoolVar(&clipPath, "c", clipPath, clipUsage)
 	flag.BoolVar(&help, "help", false, helpUsage)
@@ -103,6 +102,9 @@ func main() {
 		}
 	}
 
+	if envPath == "$PATH" {
+		envPath = os.Getenv("PATH")
+	}
 	if dir == "" {
 		usage(1, "Missing directory to add to path")
 	}
