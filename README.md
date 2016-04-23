@@ -1,5 +1,7 @@
-mergepath
-=========
+
+[![Go Report Card](http://goreportcard.com/badge/rsdoiel/mergepath)](http://goreportcard.com/report/rsdoiel/mergepath)
+
+# mergepath
 
 A small utility to merge PATH lists across different platforms (e.g. Linux, OS X).
 
