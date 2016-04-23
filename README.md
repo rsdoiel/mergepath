@@ -18,6 +18,13 @@ A small utility to merge PATH lists across different platforms (e.g. Linux, OS X
 + *-p*, *--path* (defaults to $PATH) The path you want to merge with.
 + *-P*, *--prepend* (defaults to false) If directory is not in path, prepend the directory to the path
 
+## Installation
+
+_mergepath_ can be installed with the *go get* command.
+
+```
+    go get github.com/rsdoiel/mergepath/...
+```
 
 Copyright (c) 2014 All rights reserved.
 Released under the [Simplified BSD License](http://opensource.org/licenses/bsd-license.php)
