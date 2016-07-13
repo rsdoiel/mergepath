@@ -19,6 +19,12 @@ _cgo_export.*
 
 _testmain.go
 
+# project ignore list
+*~
+*.swp
+*.zip
+bin/*
+dist/*
 *.exe
 *.test
 mergepath
