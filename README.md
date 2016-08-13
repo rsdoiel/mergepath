@@ -1,6 +1,6 @@
 
-[![Go Report Card](http://goreportcard.com/badge/rsdoiel/mergepath)](http://goreportcard.com/report/rsdoiel/mergepath)
-[![License](https://img.shields.io/badge/License-BSD%202--Clause-blue.svg)](https://opensource.org/licenses/BSD-2-Clause)
+
+This repository is depreciated, it has been merge with [fsutils](https://github.com/rsdoiel/fsutils).
 
 # mergepath
 
